@@ -12,6 +12,9 @@
   --thumbRadius: 1rem;
 }
 
+.p{
+  color:red;
+}
 /* style the input element with type "range" */
 .custom-slider input[type="range"] {
   position: relative;
