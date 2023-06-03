@@ -2,8 +2,7 @@
 import { ref as vueref} from "vue";
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set } from "firebase/database";
-
-const firebaseConfig = { 
+const firebaseConfig = {
   apiKey: "AIzaSyB3JFucQNPGMnScIQNBcrTgb5fskIss5Jc",
   authDomain: "esp32motorcontrol-95da1.firebaseapp.com",
   databaseURL: "https://esp32motorcontrol-95da1-default-rtdb.firebaseio.com",
@@ -14,22 +13,15 @@ const firebaseConfig = {
   measurementId: "G-JT0QTTRR7X"
 };
 
-
-const sliderValue = vueref(50);
-const direccion = vueref(0);
-const app = initializeApp(firebaseConfig);
+const sliderValue = ref(50);
+const direccion = ref(0);
+const velocidad = ref(0);
+const app= initializeApp(firebaseConfig)
 const db = getDatabase(app);
+set(ref(db, 'Comandos/'), {
+    Direccion:direccion
+  });
 
-const updateDireccion = (value) => {
-  direccion.value = value;
-  set(ref(db, '/Comandos/Direccion'), direccion.value)
-    .then(() => {
-      console.log('Value set in Firebase');
-    })
-    .catch((error) => {
-      console.error('Error setting value in Firebase:', error);
-    });
-  }
 
 </script>
 
@@ -49,7 +41,14 @@ const updateDireccion = (value) => {
   <input v-model="sliderValue" type="number" />
   <br />
   <input v-model="sliderValue" type="range" min="0" max="100" class="slider" />
-  <p>Velocidad {{ velocidad }}</p>
+
+  <p>{{ velocidad }}</p>
+  <p>Velocidad </p>
+  <p>0</p>
+  <p>Voltaje </p>
+  <p>0</p>
+  <p>Corriente</p>
+  
   
 
   
