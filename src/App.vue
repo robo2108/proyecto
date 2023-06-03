@@ -50,7 +50,14 @@ const updateDireccion = (value) => {
   <input v-model="sliderValue" type="number" />
   <br />
   <input v-model="sliderValue" type="range" min="0" max="100" class="slider" />
-  <p>Velocidad {{ velocidad }}</p>
+
+  <p>{{ velocidad }}</p>
+  <p>Velocidad </p>
+  <p>0</p>
+  <p>Voltaje </p>
+  <p>0</p>
+  <p>Corriente</p>
+  
   
 
   
