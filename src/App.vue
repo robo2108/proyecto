@@ -1,7 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { ref as vueref} from "vue";
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, set, ref } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyB3JFucQNPGMnScIQNBcrTgb5fskIss5Jc",
   authDomain: "esp32motorcontrol-95da1.firebaseapp.com",
@@ -13,14 +13,23 @@ const firebaseConfig = {
   measurementId: "G-JT0QTTRR7X"
 };
 
-const sliderValue = ref(50);
-const direccion = ref(0);
-const velocidad = ref(0);
-const app= initializeApp(firebaseConfig)
+const sliderValue = vueref(50);
+
+
+const direccion = vueref(0);
+const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-set(ref(db, 'Comandos/'), {
-    Direccion:direccion
-  });
+
+const updateDireccion = (value) => {
+  direccion.value = value;
+  set(ref(db, '/Comandos/Direccion'), direccion.value)
+    .then(() => {
+      console.log('Value set in Firebase');
+    })
+    .catch((error) => {
+      console.error('Error setting value in Firebase:', error);
+    });
+};
 
 
 </script>
@@ -32,9 +41,9 @@ set(ref(db, 'Comandos/'), {
   <h1 class="titulosubmain">APLICACIÓN DE IOE A UNA CIUDAD INTELIGENTE</h1>
 
   <header class="header">Control</header> 
-  <button v-on:click="direccion= 0">Stop</button>
-  <button v-on:click="direccion= 1">Forward</button>
-  <button v-on:click="direccion= -1">Reverse</button>
+  <button v-on:click="updateDireccion(0)">Stop</button>
+  <button v-on:click="updateDireccion(1)">Forward</button>
+  <button v-on:click="updateDireccion(-1)">Reverse</button>
 
   <p class="titulo">Direccion {{ direccion }}</p>
   <div class="custom-slider">
