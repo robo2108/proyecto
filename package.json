@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^9.22.1",
     "tailwind": "^4.0.0",
     "vue": "^3.3.4"
   },
