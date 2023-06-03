@@ -12,6 +12,27 @@
   --thumbRadius: 1rem;
 }
 
+.titulomain{
+  color: gray;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+} 
+
+.titulosubmain{
+  color: gray;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+} 
+
+.titulo{
+  color: blue;
+  text-align: center;
+} 
+
+
+
 /* style the input element with type "range" */
 .custom-slider input[type="range"] {
   position: relative;
@@ -36,7 +57,7 @@
 /* `::-webkit-slider-runnable-track` targets the track (background) of a range slider in chrome and safari browsers. */
 .custom-slider input[type="range"]::-webkit-slider-runnable-track {
   appearance: none;
-  background: #005a3c;
+  background: blue;
   height: var(--trackHeight);
   border-radius: 999px;
 }
@@ -62,4 +83,6 @@
   appearance: none;
   z-index: 1;
 }
+
+
 
