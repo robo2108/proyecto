@@ -12,6 +12,165 @@
   --thumbRadius: 1rem;
 }
 
+.velo {
+  position: absolute;
+  top: 290px; /* Coordenada vertical deseada */
+  left: 280px; /* Coordenada horizontal deseada */
+}
+
+.velopo {
+  position: absolute;
+  top: 600px; /* Coordenada vertical deseada */
+  left: 270px; /* Coordenada horizontal deseada */
+}
+
+
+.veloponum {
+  position: absolute;
+  top: 550px; /* Coordenada vertical deseada */
+  left: 295px; /* Coordenada horizontal deseada */
+  font-size: x-large;
+}
+
+.corrpo {
+  position: absolute;
+  top: 600px; /* Coordenada vertical deseada */
+  left: 370px; /* Coordenada horizontal deseada */
+}
+
+.corrponum {
+  position: absolute;
+  top: 550px; /* Coordenada vertical deseada */
+  left: 390px; /* Coordenada horizontal deseada */
+  font-size: x-large;
+}
+
+.volpo {
+  position: absolute;
+  top: 600px; /* Coordenada vertical deseada */
+  left: 470px; /* Coordenada horizontal deseada */
+}
+
+.volponum {
+  position: absolute;
+  top: 550px; /* Coordenada vertical deseada */
+  left: 485px; /* Coordenada horizontal deseada */
+  font-size: x-large;
+}
+
+.titulomain{
+  font-family: verdana;
+  font-style: bold;
+  color: gray;
+  text-align: center;
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.direc{
+  font-family: verdana;
+  color: black;
+  position: absolute;
+  top: 210px; /* Coordenada vertical deseada */
+  left: 321px; /* Coordenada horizontal deseada */
+}
+
+.line-1{
+  position: absolute;
+  top: 125px; /* Coordenada vertical deseada */
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  transform: translateY(-50%);
+}
+
+.headerp{
+  position: absolute;
+  top: 113px; /* Coordenada vertical deseada */
+  left: 40px; /* Coordenada horizontal deseada */
+  background-color: white;
+}
+
+.headerp2{
+  position: absolute;
+  top: 413px; /* Coordenada vertical deseada */
+  left: 40px; /* Coordenada horizontal deseada */
+  background-color: white;
+}
+
+.headerp3{
+  position: absolute;
+  top: 113px; /* Coordenada vertical deseada */
+  left: 840px; /* Coordenada horizontal deseada */
+  background-color: white;
+}
+
+.linea-vertical {
+  position: absolute;
+  top: 125px;
+  left: 800px; /* Coordenada horizontal deseada */
+  width: 1px;
+  height: 100%;
+  background-color: gray;
+}
+
+.line-2{
+  position: absolute;
+  top: 425px; /* Coordenada vertical deseada */
+  left: 0px; /* Coordenada horizontal de inicio */
+  width: 800px; /* Longitud de la línea */
+  height: 1px;
+  background-color: gray;
+}
+
+.titulosubmain{
+  font-family: verdana;
+  font-style: bold;
+  color: gray;
+  text-align: center;
+  font-size: large;
+}
+
+.redondo1 {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  top: 150px; /* Coordenada vertical deseada */
+  left: 235px; /* Coordenada horizontal de inicio */
+}
+
+.redondo2 {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  top: 150px; /* Coordenada vertical deseada */
+  left: 320px; /* Coordenada horizontal de inicio */
+}
+
+.redondo3 {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  top: 150px; /* Coordenada vertical deseada */
+  left: 420px; /* Coordenada horizontal de inicio */
+}
+
 /* style the input element with type "range" */
 .custom-slider input[type="range"] {
   position: relative;
@@ -19,6 +178,8 @@
   /* pointer-events: none; */
   border-radius: 999px;
   z-index: 0;
+  top: 120px; /* Coordenada vertical deseada */
+  left:150px; /* Coordenada horizontal de inicio */
 }
 
 /* ::before element to replace the slider track */
@@ -63,5 +224,41 @@
   z-index: 1;
 }
 
+/* Estilos para los botones de radio */
+.radio-container {
+  position: relative;
+  margin-bottom: 10px;
+}
 
+/* Estilos para los botones de radio personalizados */
+input[type="radio"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+}
 
+/* Estilos para las etiquetas de los botones de radio */
+.radio-label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+/* Estilos para el indicador de selección */
+.radio-label::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+/* Estilos para el indicador de selección cuando está seleccionado */
+input[type="radio"]:checked + .radio-label::before {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
