@@ -1,78 +1,105 @@
 @import './base.css';
 
+body {
+  resize: none;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
   font-weight: normal;
 }
+
 .custom-slider {
   --trackHeight: 0.5rem;
   --thumbRadius: 1rem;
 }
 
-.velo {
+.slider {
   position: absolute;
   top: 290px; /* Coordenada vertical deseada */
   left: 280px; /* Coordenada horizontal deseada */
 }
 
-.velopo {
+.velo {
   position: absolute;
-  top: 600px; /* Coordenada vertical deseada */
-  left: 270px; /* Coordenada horizontal deseada */
+  top: 22.65%; /* Coordenada vertical deseada */
+  left: 21.87%; /* Coordenada horizontal deseada */
 }
 
+.velopo {
+  position: absolute;
+  top: 85%; /* Coordenada vertical deseada */
+  left: 10%; /* Coordenada horizontal deseada */
+}
 
 .veloponum {
   position: absolute;
-  top: 550px; /* Coordenada vertical deseada */
-  left: 295px; /* Coordenada horizontal deseada */
-  font-size: x-large;
+  top: 76%; /* Coordenada vertical deseada */
+  left: 10%; /* Coordenada horizontal deseada */
+  font-size: xx-large;
 }
 
 .corrpo {
   position: absolute;
-  top: 600px; /* Coordenada vertical deseada */
-  left: 370px; /* Coordenada horizontal deseada */
+  top: 85%; /* Coordenada vertical deseada */
+  left: 22%; /* Coordenada horizontal deseada */
 }
 
 .corrponum {
   position: absolute;
-  top: 550px; /* Coordenada vertical deseada */
-  left: 390px; /* Coordenada horizontal deseada */
-  font-size: x-large;
+  top: 76%; /* Coordenada vertical deseada */
+  left: 23.5%; /* Coordenada horizontal deseada */
+  font-size: xx-large;
 }
 
 .volpo {
   position: absolute;
-  top: 600px; /* Coordenada vertical deseada */
-  left: 470px; /* Coordenada horizontal deseada */
+  top: 85%; /* Coordenada vertical deseada */
+  left: 34%; /* Coordenada horizontal deseada */
 }
 
 .volponum {
   position: absolute;
-  top: 550px; /* Coordenada vertical deseada */
-  left: 485px; /* Coordenada horizontal deseada */
-  font-size: x-large;
+  top: 76%; /* Coordenada vertical deseada */
+  left: 35%; /* Coordenada horizontal deseada */
+  font-size: xx-large;
 }
 
 .titulomain{
   font-family: verdana;
   font-style: bold;
-  color: gray;
+  color: black;
   text-align: center;
   font-size: x-large;
   font-weight: 500;
 }
 
+.chart-container {
+  /* Set the position to relative or absolute */
+  position: absolute;
+  /* Set the top and left coordinates */
+  top: 45%; /* Coordenada vertical deseada */
+  left: 55%; /* Coordenada horizontal deseada */
+  /* Add any other styling properties */
+}
+
+.chart1 {
+  /* Set the scaling transformation */
+  transform: scale(2);
+  transform-origin: top left;
+  /* Set the width and height to 100% to fill the container */
+  width: 100%;
+  height: 100%;
+}
+
 .direc{
   font-family: verdana;
   color: black;
-  position: absolute;
-  top: 210px; /* Coordenada vertical deseada */
-  left: 321px; /* Coordenada horizontal deseada */
+  position: relative;
+  top: 100px; /* Coordenada vertical deseada */
+  left: 175px; /* Coordenada horizontal deseada */
 }
 
 .line-1{
@@ -137,12 +164,18 @@
   border-radius: 50%;
   padding: 10px 20px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: white;
   color: #000;
   text-decoration: none;
   position: absolute;
   top: 150px; /* Coordenada vertical deseada */
-  left: 235px; /* Coordenada horizontal de inicio */
+  left: 200px; /* Coordenada horizontal de inicio */
+}
+
+.imgb1 {
+  width: 20px; /* Define el ancho de la imagen en relación al botón */
+  height: 20px; /* Define la altura de la imagen en relación al botón */
+  object-fit: cover;
 }
 
 .redondo2 {
@@ -150,12 +183,18 @@
   border-radius: 50%;
   padding: 10px 20px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: white;
   color: #000;
   text-decoration: none;
   position: absolute;
   top: 150px; /* Coordenada vertical deseada */
-  left: 320px; /* Coordenada horizontal de inicio */
+  left: 330px; /* Coordenada horizontal de inicio */
+}
+
+.imgb2 {
+  width: 20px; /* Define el ancho de la imagen en relación al botón */
+  height: 20px; /* Define la altura de la imagen en relación al botón */
+  object-fit: cover;
 }
 
 .redondo3 {
@@ -163,12 +202,18 @@
   border-radius: 50%;
   padding: 10px 20px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: white;
   color: #000;
   text-decoration: none;
   position: absolute;
   top: 150px; /* Coordenada vertical deseada */
-  left: 420px; /* Coordenada horizontal de inicio */
+  left: 460px; /* Coordenada horizontal de inicio */
+}
+
+.imgb3 {
+  width: 20px; /* Define el ancho de la imagen en relación al botón */
+  height: 20px; /* Define la altura de la imagen en relación al botón */
+  object-fit: cover;
 }
 
 /* style the input element with type "range" */
@@ -178,7 +223,7 @@
   /* pointer-events: none; */
   border-radius: 999px;
   z-index: 0;
-  top: 120px; /* Coordenada vertical deseada */
+  top: 100px; /* Coordenada vertical deseada */
   left:150px; /* Coordenada horizontal de inicio */
 }
 
@@ -192,6 +237,7 @@
   /* z-index: -1; */
   pointer-events: none;
   border-radius: 999px;
+  
 }
 
 /* `::-webkit-slider-runnable-track` targets the track (background) of a range slider in chrome and safari browsers. */
@@ -200,6 +246,7 @@
   background: blue;
   height: var(--trackHeight);
   border-radius: 999px;
+  
 }
 
 /* `::-moz-range-track` targets the track (background) of a range slider in Mozilla Firefox. */
@@ -208,6 +255,7 @@
   background: #005a3c;
   height: var(--trackHeight);
   border-radius: 999px;
+  
 }
 
 .custom-slider input[type="range"]::-webkit-slider-thumb {
@@ -222,6 +270,7 @@
   pointer-events: all;
   appearance: none;
   z-index: 1;
+  
 }
 
 /* Estilos para los botones de radio */

@@ -2,7 +2,8 @@
 import { ref as vueref, watchEffect } from "vue";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get } from "firebase/database";
-import Chart from 'chart.js/auto';
+import Chart from "chart.js/auto";
+
 const firebaseConfig = {
   apiKey: "AIzaSyB3JFucQNPGMnScIQNBcrTgb5fskIss5Jc",
   authDomain: "esp32motorcontrol-95da1.firebaseapp.com",
@@ -20,6 +21,21 @@ const direccion = vueref(0);
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const chartCanvas = vueref(null);
+var Velocidad_actual=vueref(0);
+
+setInterval(function() {
+  location.reload(); // Reload the page
+}, 60000);
+
+    
+const velocidadactualRef = ref(db, "/Mediciones/Velocidad_actual");
+get(velocidadactualRef)
+  .then((snapshot) => {
+     Velocidad_actual.value = snapshot.val();
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 const updateDireccion = (value) => {
   direccion.value = value;
@@ -32,16 +48,14 @@ const updateDireccion = (value) => {
     });
 };
 
-
 const updateVelocidad = (newValue) => {
-  if (sliderValue== undefined){
-    var newValue=50
+  if (sliderValue == undefined) {
+    var newValue = 50;
+  } else {
+    newValue = parseInt(sliderValue.value);
   }
-  else{
-  newValue=parseInt(sliderValue.value);
-  }
-  set(ref(db, '/Comandos/Velocidad'), newValue)
-  .then(() => {
+  set(ref(db, "/Comandos/Velocidad"), newValue)
+    .then(() => {
       console.log("Value set in Firebase");
     })
     .catch((error) => {
@@ -49,51 +63,55 @@ const updateVelocidad = (newValue) => {
     });
 };
 
-const firebaseRef = ref(db, '/Mediciones/Velocidad');
-get(firebaseRef).then((snapshot) => {
-     const data = snapshot.val();
-      createBarChart(data);
-    }).catch((error) => {
-      console.error(error);
-    });
+const firebaseRef = ref(db, "/Mediciones/Velocidad");
+get(firebaseRef)
+  .then((snapshot) => {
+    const data = snapshot.val();
+    createBarChart(data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+  
 
-    const createBarChart = (data) => {
-      const labels = Object.keys(data);
-      const values = Object.values(data);
+const createBarChart = (data) => {
+  const labels = Object.keys(data);
+  const values = Object.values(data);
 
-      new Chart(chartCanvas.value, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: 'Values',
-              data: values,
-              backgroundColor: 'rgba(75, 192, 192, 0.2)',
-              borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1
-            }
-          ]
+  new Chart(chartCanvas.value, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Values",
+          data: values,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
         },
-        options: {
-          responsive: true,
-          scales: {
-            x: {
-              type: 'category',
-              labels: labels
-            },
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    };
-
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          type: "category",
+          labels: labels,
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+};
 </script>
 
+
+
 <template>
-   <div class="line-1"></div>
+  <div class="line-1"></div>
   <div class="linea-vertical"></div>
   <div class="line-2"></div>
   <header class="titulomain">
@@ -103,48 +121,57 @@ get(firebaseRef).then((snapshot) => {
   <header class="headerp">Control</header>
   <header class="headerp2">Sensado</header>
   <header class="headerp3">Visualización</header>
- 
-  <button class="redondo1" v-on:click="updateDireccion(0)">Stop</button>
-  <button class="redondo2" v-on:click="updateDireccion(1)">Forward</button>
-  <button class="redondo3" v-on:click="updateDireccion(2)">Reverse</button>
 
-  
+  <button class="redondo1" v-on:click="updateDireccion(0)">
+    <img class = "imgb1" src="public\stop.jpg" alt="Imagen en botón" /> </button>
+  <button class="redondo2" v-on:click="updateDireccion(1)">
+    <img class = "imgb2" src="public\forward.png" alt="Imagen en botón" /> </button>
+  <button class="redondo3" v-on:click="updateDireccion(2)">
+    <img class = "imgb3" src="public\reverse.png" alt="Imagen en botón" /> </button>
+
   <p class="direc">Direccion {{ direccion }}</p>
   <div class="custom-slider">
-    <input  class="velo"  v-on:change="updateVelocidad" v-model="sliderValue" type="number" />
+    <input
+      class="slider"
+      v-on:change="updateVelocidad"
+      v-model="sliderValue"
+      type="number"
+    />
     <br />
     <input
-    v-on:change="updateVelocidad"
+      v-on:change="updateVelocidad"
       v-model="sliderValue"
       type="range"
       min="0"
-      max="100"
-      class="slider"
+      max="255"
     />
 
-    <p>{{ velocidad }}</p>
     <p class="velopo">Velocidad</p>
-    <p class="veloponum">0</p>
+    <p class="veloponum">{{ Velocidad_actual }}</p>
     <p class="volpo">Voltaje</p>
     <p class="volponum">0</p>
     <p class="corrpo">Corriente</p>
     <p class="corrponum">0</p>
   </div>
 
-  <div class="radio-container" style="top: 15px; left: 680px;">
-  <input type="radio" id="radio1" name="radio-group">
-  <label for="radio1" class="radio-label">Velocidad</label>
+  <div class="radio-container" style="top: 15px; left: 680px">
+    <input type="radio" id="radio1" name="radio-group" checked/>
+    <label for="radio1" class="radio-label">Velocidad</label>
   </div>
 
-  <div class="radio-container" style="top: 15px; left: 680px;">
-  <input type="radio" id="radio2" name="radio-group">
-  <label for="radio2" class="radio-label">Voltaje</label>
+  <div class="radio-container" style="top: 15px; left: 680px">
+    <input type="radio" id="radio2" name="radio-group" />
+    <label for="radio2" class="radio-label">Voltaje</label>
   </div>
 
-  <div class="radio-container" style="top: 15px; left: 680px;">
-  <input type="radio" id="radio3" name="radio-group">
-  <label for="radio3" class="radio-label">Corriente</label>
+  <div class="radio-container" style="top: 15px; left: 680px">
+    <input type="radio" id="radio3" name="radio-group" />
+    <label for="radio3" class="radio-label">Corriente</label>
   </div>
-  <canvas ref="chartCanvas"></canvas>
 
-</template>
+  <div  class="chart-container">
+  <canvas  class="chart1" ref="chartCanvas"></canvas>
+  </div>
+
+
+  </template>
